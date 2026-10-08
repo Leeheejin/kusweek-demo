@@ -1,36 +1,26 @@
-# KUSWEEK — One line, one idea
+# KUSWEEK · From thought to thread
 
-고객의 모호한 아이디어를 해석하고, 같은 의류의 핏·기장·소매·디테일을 조정해 제작 가능한 제안으로 연결하는 비전 모션입니다. 제안형 수주는 이 대화 전체의 방식이며 별도의 순서로 나열하지 않습니다.
+Scroll-driven apparel design vision, implemented with Three.js r170. A luminous curve becomes a continuous garment wireframe; requirements refine the same mesh; complete variants converge; measurements lead into an animated apparel drafting sheet. The sheet turns as a whole into a luminous axis, and the garment returns before a short handoff to the photographic concept image.
 
-## 실행
+## Run and build
 
-배포 HTML은 Three.js, 글꼴, 셰이더, 의류 지오메트리를 내장합니다. 외부 이미지나 3D 모델 다운로드가 없습니다. GitHub Pages 같은 정적 호스팅에서 실행할 수 있습니다.
+`npm install` then `npm run build`. The result is `dist/index.html`, a self-contained static page with embedded JavaScript, font and image assets. It can be hosted on GitHub Pages without a server or API. `node check.mjs` checks geometry and reversible drafting state.
 
-- 기본: 스크롤에 연동하는 8개 장면.
-- `?autoplay=1`: 검토를 위한 72초 자동 재생. 스크롤을 시작하면 스크롤 모드로 바뀝니다.
-- `?t=12`, `?t=44.5`, `?t=60.5`: 주요 장면을 고정한 정지 화면.
-- 소스 빌드: `npm install`, `npm test`, `npm run build`.
+## Review
 
-## 구조
+- Default: scroll controls the 105-second motion score in both directions.
+- `?frame=wire`: wireframe keyframe.
+- `?frame=cad`: actual path drawing keyframe.
+- `?frame=photo`: completed concept image immediately following the handoff.
+- `?t=NUMBER`: exact position in the motion score.
+- `?autoplay=1`: timed playback for presentation review; scrolling takes over.
 
-`garment.js`는 새로 작성한 69,188 정점 의류 모델과 연속 변형을 만듭니다. 목 개구부, 어깨, 진동, 소매, 접힌 칼라, 단작, 포켓, 커프스와 단추를 포함합니다. 각 표면은 항상 의류에 붙어 있습니다.
+CAD is drawn in six ordered groups, with pauses: cutting outlines, sewing lines, seam allowances, construction lines, dimensions, notches. A per-vertex arc-length timeline clips each path at the actual pen position. A narrow light wake follows the completed part of the line. This is not a static bitmap wipe.
 
-`shaders.js`는 동일한 표면에서 규칙적인 UV 격자, 스캔, 평면 설계 표현, 절차적 직조 원단을 처리합니다. 원단 스캔은 의류 위치·크기·형상을 교체하지 않습니다.
+## Scope
 
-`motion.js`와 `app.js`는 선의 형성, 요구 반영, 온전한 시안들의 곡선 합류, 치수 스캔, CAD 선행 스트로크, 깊이 복원, 원단 전환을 연결합니다. 파편·입자·천 조각 조립이나 생성 이미지 합성은 사용하지 않습니다.
+This is a vision demonstration, not an AI inference endpoint or validated manufacturing-pattern generator. Draft dimensions reference the supplied regular-shirt size-100 chart and require expert validation for the proposed shacket. The final clothing assets are existing conceptual product images, not procedural fabric rendering or a fabricated claim of physical-sample photography. Because the image and procedural wireframe have different silhouettes, the final transition deliberately uses a short full-image dissolve rather than a misleading half-mesh/half-photo surface.
 
-## 정확성 범위
+The public page contains no original company PDFs, private commercial terms, or customer-submission backend. The AX vision is expressed throughout the proposal and production process, not as a separate service step.
 
-이 구현은 실시간 Three.js 모션 프로토타입입니다. CAD 장면은 동일 의류를 평면으로 투영한 설계 시각화이며 실제 재단용 패턴·DXF 또는 CLO 물리 시뮬레이션이 아닙니다. AI 서비스, 주문 접수, 제조 실행과 연결하지 않았습니다. 실제 제작 단계에서는 패턴 전문가와 실물 샘플 검토가 필요합니다.
-
-화면의 48 / 114 / 60 / 78 cm는 사용자 제공 기본 셔츠 100호의 어깨 / 가슴둘레 / 소매 / 총장 참고 값입니다. 셔켓의 확정 규격이나 현재 3D 메쉬에서 계산한 값으로 표시하지 않습니다. 기업진단 원문·원가·개인 정보는 배포물에 포함하지 않습니다.
-
-## 검증
-
-`check.mjs`는 8개 상태의 유한 좌표, 극단 변형, 정점 수, 셰이더 계약을 확인합니다. GPU 셰이더 컴파일과 화면 구성은 브라우저에서 별도로 검수합니다.
-
-## 라이선스
-
-- Three.js r170: MIT, `THREE-LICENSE.txt`.
-- Pretendard: SIL Open Font License, `PRETENDARD-LICENSE.txt`.
-- 브랜드 명칭의 권리는 해당 소유자에게 있습니다.
+Three.js license is included in THREE-LICENSE.txt. Pretendard is embedded for consistent Korean typography.
