@@ -1,6 +1,8 @@
-# KUSWEEK — 보는 순간, 만드는 일이 시작된다.
+# KUSWEEK — 샘플에서, 수주까지.
 
 고객의 가상샘플 경험에서 제안형 수주, 내부 설계·제작·콘텐츠까지 연결하는 AX 비전 웹사이트입니다.
+
+AX는 별도 메뉴·기능·섹션으로 분리하지 않습니다. 고객의 요구가 제안 브리프, 설계 초안, 수정·승인, 제작 기록과 다음 제안으로 이어지는 전체 경험에 녹여 설명합니다. 세부 역할과 산출물은 해당 장면의 상세 설명에서 확인합니다.
 
 ## 여섯 장면
 
@@ -20,6 +22,9 @@
 소스 ZIP에서는 `preview.html`을 정적 서버로 실행하면 됩니다. `index.html`은 패턴 SVG 삽입 전 편집용 템플릿이며, `pattern.svg`가 별도 제공됩니다. 별도 빌드 결과물은 저장소 루트 `index.html`입니다.
 
 ## 디자인·모션
+
+- CAD를 중심 시각 언어로 사용: 의류 윤곽선·봉제선 그리기, 반투명 패턴 면, 앞판·뒤판·소매의 전개, 치수선과 CAD 검토 정보.
+- 실제 화면으로 참고한 [Apple AirPods Pro](https://www.apple.com/airpods-pro/), [DJI Mavic 4 Pro](https://www.dji.com/mavic-4-pro), [Linear](https://linear.app/): 큰 제품 이미지, 근접 디테일, 짧은 메시지, 화면 재배치와 연결되는 정보. 해당 사이트의 이미지·코드·로고는 사용하지 않았습니다.
 
 - [revfactory/showreel](https://github.com/revfactory/showreel), commit `bf62d0bbcb306a5676f4a71be9119f2c1248bbaf`: 미니멀 프리미엄, 2.5D 패럴랙스, 매치 컷, 마스크·선 그리기, 단계별 등장. 모션 수학 일부 웹 적용. MIT, `SHOWREEL-LICENSE.txt`.
 - Pretendard Variable 1.3.9: SIL Open Font License, `PRETENDARD-LICENSE.txt`.
