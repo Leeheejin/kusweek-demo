@@ -4,13 +4,13 @@ Scroll-driven apparel design vision, implemented with Three.js r170. A moving li
 
 The garment uses one 87,001-vertex subdivided surface, one UV field and the source image's alpha silhouette. Its shallow analytic relief adds limited depth around the torso, sleeves and collar. Digital quadrilateral lines and the original concept image are two states of this same mesh; the material frontier does not swap models, vertex positions, scale or UV coordinates. Original brown, charcoal and khaki concept images provide the color comparison.
 
-The light uses a camera-facing ribbon with a bright core and tapered wake. Its finite history follows one moving head through the silhouette, requirements, measurements and CAD. Pen-up travel also follows a continuous route, without adding ink to the drawing. All light positions and the garment scan share the scroll score: pausing scroll freezes the spatial animation, and there are no independent repeating pulses that restart behind the leading point. Scroll damping is disabled for reduced-motion preferences.
+The light uses a camera-facing ribbon with a bright core and tapered wake. The introduction follows one immutable arc-length route: a rising approach, the clockwise garment outline, a tangent-matched departure and the downward scan. Its head and fixed-length tail occupy the same path, so easing cannot reveal older sections behind the tail. Later travel also uses physical-distance tails. Pen-up travel follows a continuous route, without adding ink to the drawing. All light positions and the garment scan share the scroll score: pausing scroll freezes the spatial animation, and there are no independent repeating pulses that restart behind the leading point. Scroll damping is disabled for reduced-motion preferences.
 
 ## Run and build
 
 `npm install` then `npm run build`. The current entry point is `app-continuous.js`. The result is `dist/index.html`, a self-contained static page with embedded JavaScript, font and image assets. It can be hosted on GitHub Pages without a server or API.
 
-Run `npm test` to verify the current implementation. It executes the real app code with browser/GPU boundaries stubbed and checks the shared mesh and UV field, embedded WebP dimensions/alpha metadata, pen-to-path registration, every pen-up boundary, shared CAD/garment scan planes, and reverse-scroll state at 500, 837 and 1265 pixel widths. It does not execute GLSL or decode rendered pixels: shader compilation, raster output and visual quality require browser review.
+Run `npm test` to verify the current implementation. It executes the real app code with browser/GPU boundaries stubbed and checks the shared mesh and UV field, embedded WebP dimensions/alpha metadata, pen-to-path registration, every pen-up boundary, shared CAD/garment scan planes, and reverse-scroll state at 500, 837 and 1265 pixel widths. Introductory motion checks also cover monotonic head and tail distance and matching travel directions at each handoff. It does not execute GLSL or decode rendered pixels: shader compilation, raster output and visual quality require browser review.
 
 ## Review
 
