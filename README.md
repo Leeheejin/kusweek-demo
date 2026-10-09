@@ -1,16 +1,16 @@
 # KUSWEEK · From thought to thread
 
-Scroll-driven apparel design vision, implemented with Three.js r170. A moving line follows the source garment silhouette and introduces a photo-registered digital surface. Customer requirements refine that same surface, complete alternatives converge, and measurements lead into an authored apparel drafting sequence. One horizontal frontier clears the CAD sheet and introduces the garment; a vertical frontier then replaces its wire appearance with the source concept image.
+Scroll-driven apparel design vision, implemented with Three.js r170. One luminous line advances through the entire story while the garment silhouette, photo-registered digital surface, customer requirements and precise drafting appear in sequence. The same garment surface ultimately resolves into the source concept image.
 
 The garment uses one 87,001-vertex subdivided surface, one UV field and the source image's alpha silhouette. Its shallow analytic relief adds limited depth around the torso, sleeves and collar. Digital quadrilateral lines and the original concept image are two states of this same mesh; the material frontier does not swap models, vertex positions, scale or UV coordinates. Original brown, charcoal and khaki concept images provide the color comparison.
 
-The light uses a camera-facing ribbon with a bright core and tapered wake. The introduction follows an open left-to-right sweep, then a downward scan. The head never takes a lap around the closed garment outline: the outline is revealed by a world-X mask at the head's actual X position. Later carrier paths are authored once in screen coordinates, with fixed-distance trails; live garment poses and camera zoom cannot rewrite their history. CAD drawing begins after the sheet and camera have settled. Pen-up travel follows a continuous route, without adding ink to the drawing. All light positions and the garment scan share the scroll score: pausing scroll freezes the spatial animation, and there are no independent repeating pulses. Scroll damping is disabled for reduced-motion preferences.
+The light uses a camera-facing ribbon with a bright core and tapered wake. Its single screen-space path advances only rightward and downward throughout the score, including CAD. It never visits garment anchors, circles an outline, returns to a scan origin or follows the drafting pen. The garment and drawing appear in response to the same scroll score; they do not redirect the light. Camera zoom is compensated for before rendering the ribbon. There is no second moving pen glow or scan-light head. Pausing scroll freezes all spatial animation, and reverse scroll retraces the same states. Scroll damping is disabled for reduced-motion preferences.
 
 ## Run and build
 
 `npm install` then `npm run build`. The current entry point is `app-continuous.js`. The result is `dist/index.html`, a self-contained static page with embedded JavaScript, font and image assets. It can be hosted on GitHub Pages without a server or API.
 
-Run `npm test` to verify the current implementation. It executes the real app code with browser/GPU boundaries stubbed and checks the shared mesh and UV field, embedded WebP dimensions/alpha metadata, pen-to-path registration, every pen-up boundary, shared CAD/garment scan planes, and reverse-scroll state at 500, 837 and 1265 pixel widths. Introductory motion checks also cover monotonic head and tail distance and matching travel directions at each handoff. It does not execute GLSL or decode rendered pixels: shader compilation, raster output and visual quality require browser review.
+Run `npm test` to verify the current implementation. It executes the real app code with browser/GPU boundaries stubbed and checks the shared mesh and UV field, embedded WebP dimensions/alpha metadata, drafting precision, shared CAD/garment masks, and reverse-scroll state at 500, 837 and 1265 pixel widths. The whole score is checked in actual screen coordinates: neither the light head nor tail may move left or up during forward scroll, with no CAD exception. It does not execute GLSL or decode rendered pixels: shader compilation, raster output and visual quality require browser review.
 
 ## Review
 
@@ -21,7 +21,7 @@ Run `npm test` to verify the current implementation. It executes the real app co
 - `?t=NUMBER`: exact position in the motion score.
 - `?autoplay=1`: timed playback for presentation review; scrolling takes over.
 
-CAD contains 67 authored drawing paths in six ordered groups: cutting outlines, sewing lines, seam allowances, construction lines, dimensions and notches. A per-vertex arc-length timeline clips each stroke at the actual pen position. Each of the 66 pen-up transfers moves continuously to the next path without leaving connecting ink. A narrow light wake follows the completed part of each stroke.
+CAD contains 67 authored drawing paths in six ordered groups: cutting outlines, sewing lines, seam allowances, construction lines, dimensions and notches. A per-vertex arc-length timeline precisely reveals each stroke. Pen-up transfers leave no connecting ink and have no visible moving light. The accumulated drawing stays in place while the one story light continues forward.
 
 CAD uses screen-space line ribbons so cutting, sewing, allowance and dimension weights remain distinct. The leading stroke and completed draft read the same arc-length progress, with no sheet or camera movement during drawing. At the outgoing transition, CAD erasure and garment entry use the same world-space X boundary; the sheet is not rotated into a different model or assembled from flying panels.
 
