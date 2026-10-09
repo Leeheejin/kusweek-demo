@@ -4,7 +4,7 @@ Scroll-driven apparel design vision, implemented with Three.js r170. A moving li
 
 The garment uses one 87,001-vertex subdivided surface, one UV field and the source image's alpha silhouette. Its shallow analytic relief adds limited depth around the torso, sleeves and collar. Digital quadrilateral lines and the original concept image are two states of this same mesh; the material frontier does not swap models, vertex positions, scale or UV coordinates. Original brown, charcoal and khaki concept images provide the color comparison.
 
-The light uses a camera-facing ribbon with a bright core and tapered wake. The introduction follows one immutable arc-length route: a rising approach, the clockwise garment outline, a tangent-matched departure and the downward scan. Its head and fixed-length tail occupy the same path, so easing cannot reveal older sections behind the tail. Later travel also uses physical-distance tails. Pen-up travel follows a continuous route, without adding ink to the drawing. All light positions and the garment scan share the scroll score: pausing scroll freezes the spatial animation, and there are no independent repeating pulses that restart behind the leading point. Scroll damping is disabled for reduced-motion preferences.
+The light uses a camera-facing ribbon with a bright core and tapered wake. The introduction follows an open left-to-right sweep, then a downward scan. The head never takes a lap around the closed garment outline: the outline is revealed by a world-X mask at the head's actual X position. Later carrier paths are authored once in screen coordinates, with fixed-distance trails; live garment poses and camera zoom cannot rewrite their history. CAD drawing begins after the sheet and camera have settled. Pen-up travel follows a continuous route, without adding ink to the drawing. All light positions and the garment scan share the scroll score: pausing scroll freezes the spatial animation, and there are no independent repeating pulses. Scroll damping is disabled for reduced-motion preferences.
 
 ## Run and build
 
@@ -23,7 +23,7 @@ Run `npm test` to verify the current implementation. It executes the real app co
 
 CAD contains 67 authored drawing paths in six ordered groups: cutting outlines, sewing lines, seam allowances, construction lines, dimensions and notches. A per-vertex arc-length timeline clips each stroke at the actual pen position. Each of the 66 pen-up transfers moves continuously to the next path without leaving connecting ink. A narrow light wake follows the completed part of each stroke.
 
-CAD uses screen-space line ribbons so cutting, sewing, allowance and dimension weights remain distinct when the camera zooms. The leading stroke and completed draft read the same arc-length progress. At the outgoing transition, CAD erasure and garment entry use the same world-space X boundary; the sheet is not rotated into a different model or assembled from flying panels.
+CAD uses screen-space line ribbons so cutting, sewing, allowance and dimension weights remain distinct. The leading stroke and completed draft read the same arc-length progress, with no sheet or camera movement during drawing. At the outgoing transition, CAD erasure and garment entry use the same world-space X boundary; the sheet is not rotated into a different model or assembled from flying panels.
 
 ## Motion references
 
