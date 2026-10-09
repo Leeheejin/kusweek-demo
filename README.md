@@ -4,7 +4,7 @@ Scroll-driven apparel design vision, implemented with Three.js r170. A moving li
 
 The garment uses one 87,001-vertex subdivided surface, one UV field and the source image's alpha silhouette. Its shallow analytic relief adds limited depth around the torso, sleeves and collar. Digital quadrilateral lines and the original concept image are two states of this same mesh; the material frontier does not swap models, vertex positions, scale or UV coordinates. Original brown, charcoal and khaki concept images provide the color comparison.
 
-The light uses a camera-facing ribbon with a bright core and tapered wake. Its finite history follows one moving head through the silhouette, requirements, measurements and CAD. Pen-up travel also follows a continuous route, without adding ink to the drawing. Scroll damping is disabled for reduced-motion preferences.
+The light uses a camera-facing ribbon with a bright core and tapered wake. Its finite history follows one moving head through the silhouette, requirements, measurements and CAD. Pen-up travel also follows a continuous route, without adding ink to the drawing. All light positions and the garment scan share the scroll score: pausing scroll freezes the spatial animation, and there are no independent repeating pulses that restart behind the leading point. Scroll damping is disabled for reduced-motion preferences.
 
 ## Run and build
 
